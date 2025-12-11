@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Casa de Alquiler La Prohibida</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
@@ -13,10 +15,13 @@
       background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
       color: #f5f5f5;
     }
-    h1, h2, h3 {
+
+    h1,
+    h2,
+    h3 {
       font-family: 'Lora', serif;
     }
-    
+
     /* Carousel Styles */
     .carousel-container {
       position: relative;
@@ -25,25 +30,25 @@
       margin: 0 auto;
       overflow: hidden;
       border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     }
-    
+
     .carousel-track {
       display: flex;
       transition: transform 0.5s ease-in-out;
     }
-    
+
     .carousel-slide {
       min-width: 100%;
       height: 600px;
     }
-    
+
     .carousel-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-    
+
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -62,20 +67,20 @@
       transition: all 0.3s;
       z-index: 10;
     }
-    
+
     .carousel-btn:hover {
       background: #eab308;
       transform: translateY(-50%) scale(1.1);
     }
-    
+
     .carousel-btn.prev {
       left: 20px;
     }
-    
+
     .carousel-btn.next {
       right: 20px;
     }
-    
+
     .carousel-indicators {
       position: absolute;
       bottom: 20px;
@@ -85,22 +90,22 @@
       gap: 10px;
       z-index: 10;
     }
-    
+
     .indicator {
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.5);
+      background: rgba(255, 255, 255, 0.5);
       cursor: pointer;
       transition: all 0.3s;
     }
-    
+
     .indicator.active {
       background: #eab308;
       width: 32px;
       border-radius: 6px;
     }
-    
+
     /* WhatsApp Floating Button */
     .whatsapp-float {
       position: fixed;
@@ -118,61 +123,68 @@
       transition: all 0.3s;
       animation: pulse 2s infinite;
     }
-    
+
     .whatsapp-float:hover {
       transform: scale(1.1);
       box-shadow: 0 12px 32px rgba(37, 211, 102, 0.6);
     }
-    
+
     .whatsapp-float i {
       font-size: 32px;
       color: white;
     }
-    
+
     @keyframes pulse {
-      0%, 100% {
+
+      0%,
+      100% {
         box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
       }
+
       50% {
         box-shadow: 0 8px 24px rgba(37, 211, 102, 0.7), 0 0 0 15px rgba(37, 211, 102, 0);
       }
     }
-    
+
     /* Smooth scroll */
     html {
       scroll-behavior: smooth;
     }
-    
+
     /* Feature cards hover effect */
     .feature-card {
       transition: all 0.3s;
     }
-    
+
     .feature-card:hover {
       transform: translateY(-8px);
     }
-    
+
     @media (max-width: 768px) {
       .carousel-slide {
         height: 400px;
       }
+
       .carousel-btn {
         width: 40px;
         height: 40px;
         font-size: 16px;
       }
+
       .whatsapp-float {
         width: 55px;
         height: 55px;
         bottom: 20px;
         right: 20px;
       }
+
       .whatsapp-float i {
         font-size: 28px;
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- WhatsApp Floating Button -->
@@ -193,13 +205,17 @@
   </header>
 
   <!-- Hero Section -->
-  <section id="inicio" class="relative h-[85vh] flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.46.jpeg');">
+  <section id="inicio" class="relative h-[85vh] flex items-center justify-center bg-cover bg-center"
+    style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.46.jpeg');">
     <div class="text-center px-4 max-w-4xl">
       <h2 class="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">Descubrí tu próximo hogar temporal</h2>
       <p class="text-xl md:text-2xl mb-8 text-gray-200">Comodidad, naturaleza y descanso en un solo lugar</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#contacto" class="bg-yellow-400 text-black font-bold py-4 px-8 rounded-full shadow-lg hover:bg-yellow-300 hover:scale-105 transform transition">Reservá ahora</a>
-        <a href="https://wa.me/5493816789468" target="_blank" class="bg-green-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 transform transition">
+        <a href="#contacto"
+          class="bg-yellow-400 text-black font-bold py-4 px-8 rounded-full shadow-lg hover:bg-yellow-300 hover:scale-105 transform transition">Reservá
+          ahora</a>
+        <a href="https://wa.me/5493816789468" target="_blank"
+          class="bg-green-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 transform transition">
           <i class="fab fa-whatsapp mr-2"></i>Consultar por WhatsApp
         </a>
       </div>
@@ -234,59 +250,48 @@
     <h2 class="text-4xl text-center font-bold mb-12 text-yellow-400">Galería</h2>
     <div class="carousel-container">
       <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.46.jpeg" alt="Vista de la casa"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.49 (1).jpeg" alt="Interior"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.49.jpeg" alt="Habitación"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.50.jpeg" alt="Cocina"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.58 (1).jpeg" alt="Baño"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.58.jpeg" alt="Sala de estar"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.04 (1).jpeg" alt="Vista lateral"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.04 (2).jpeg" alt="Exterior"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.04.jpeg" alt="Entrada"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.05 (1).jpeg" alt="Jardín"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.05 (2).jpeg" alt="Paisaje"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.05 (3).jpeg" alt="Detalle jardín"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.05.jpeg" alt="Vista panorámica"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.06 (1).jpeg" alt="Entorno"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.06 (2).jpeg" alt="Montañas"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.06 (3).jpeg" alt="Naturaleza"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.06 (4).jpeg" alt="Aire libre"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.06.jpeg" alt="Atardecer"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.07 (1).jpeg" alt="Vista nocturna"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.07 (2).jpeg" alt="Iluminación"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.35.07.jpeg" alt="Detalle"></div>
+        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.46.jpeg"
+            alt="Vista de la casa"></div>
+        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07 (1).jpeg" alt="Foto 2">
+        </div>
+        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07 (2).jpeg" alt="Foto 3">
+        </div>
+        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07 (3).jpeg" alt="Foto 4">
+        </div>
+        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07.jpeg" alt="Foto 5"></div>
+        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.09.jpeg" alt="Foto 6"></div>
+        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.28.06.jpeg" alt="Foto 7"></div>
+        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.28.27.jpeg" alt="Foto 8"></div>
+        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.29.09.jpeg" alt="Foto 9"></div>
       </div>
-      
+
       <button class="carousel-btn prev" onclick="moveSlide(-1)">
         <i class="fas fa-chevron-left"></i>
       </button>
       <button class="carousel-btn next" onclick="moveSlide(1)">
         <i class="fas fa-chevron-right"></i>
       </button>
-      
+
       <div class="carousel-indicators" id="indicators"></div>
     </div>
-    <p class="text-center text-gray-400 mt-6">21 fotos disponibles - Navegá con las flechas</p>
+    <p class="text-center text-gray-400 mt-6">9 fotos disponibles - Navegá con las flechas</p>
   </section>
 
   <!-- Ubicación -->
   <section id="ubicacion" class="py-20 px-6 max-w-6xl mx-auto">
     <h2 class="text-4xl text-center font-bold mb-8 text-yellow-400">Ubicación</h2>
-    <p class="text-center text-lg mb-8 text-gray-300">Ubicada en Tafí del Valle, Tucumán. Un lugar rodeado de naturaleza, cerca de ríos, montañas y todos los servicios esenciales.</p>
+    <p class="text-center text-lg mb-8 text-gray-300">Ubicada en Tafí del Valle, Tucumán. Un lugar rodeado de
+      naturaleza, cerca de ríos, montañas y todos los servicios esenciales.</p>
     <div class="flex justify-center mb-6">
-      <a href="https://www.google.com/maps/place/Caba%C3%B1a+de+Lucas/@-26.8581366,-65.7529971,17z/data=!3m1!4b1!4m6!3m5!1s0x942223001da2eb8b:0xa4803e6474139b91!8m2!3d-26.8581414!4d-65.7504222!16s%2Fg%2F11vyg3s63b?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D" 
-         target="_blank" 
-         class="bg-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-blue-700 hover:scale-105 transform transition inline-flex items-center gap-2">
+      <a href="https://www.google.com/maps/place/Caba%C3%B1a+de+Lucas/@-26.8581366,-65.7529971,17z/data=!3m1!4b1!4m6!3m5!1s0x942223001da2eb8b:0xa4803e6474139b91!8m2!3d-26.8581414!4d-65.7504222!16s%2Fg%2F11vyg3s63b?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D"
+        target="_blank"
+        class="bg-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-blue-700 hover:scale-105 transform transition inline-flex items-center gap-2">
         <i class="fas fa-map-marker-alt"></i>
         Ver en Google Maps - Cómo llegar
       </a>
     </div>
     <div class="flex justify-center">
-      <iframe
-        class="rounded-xl shadow-2xl border-4 border-gray-800"
-        width="100%"
-        height="400"
-        style="max-width: 800px"
+      <iframe class="rounded-xl shadow-2xl border-4 border-gray-800" width="100%" height="400" style="max-width: 800px"
         loading="lazy"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.8362847267847!2d-65.7529971!3d-26.8581366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942223001da2eb8b%3A0xa4803e6474139b91!2sCaba%C3%B1a%20de%20Lucas!5e0!3m2!1ses!2sar!4v1234567890">
       </iframe>
@@ -297,13 +302,15 @@
   <section id="contacto" class="py-20 px-6 bg-black/30">
     <h2 class="text-4xl text-center font-bold mb-8 text-yellow-400">Consultas y Reservas</h2>
     <p class="text-center text-gray-300 mb-10">¿Tenés dudas? Contactanos por el medio que prefieras</p>
-    
+
     <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-4">
-      <a href="https://wa.me/5493816789468" target="_blank" class="bg-green-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 transform transition inline-flex items-center gap-2">
+      <a href="https://wa.me/5493816789468" target="_blank"
+        class="bg-green-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 transform transition inline-flex items-center gap-2">
         <i class="fab fa-whatsapp text-2xl"></i>
         WhatsApp: 381 678-9468
       </a>
-      <a href="tel:3816789468" class="bg-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-blue-700 hover:scale-105 transform transition inline-flex items-center gap-2">
+      <a href="tel:3816789468"
+        class="bg-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-blue-700 hover:scale-105 transform transition inline-flex items-center gap-2">
         <i class="fas fa-phone text-2xl"></i>
         Llamar: 381 678-9468
       </a>
@@ -324,7 +331,8 @@
         </a>
       </div>
       <div>
-        <a href="https://www.google.com/maps/place/Caba%C3%B1a+de+Lucas/@-26.8581366,-65.7529971,17z/data=!3m1!4b1!4m6!3m5!1s0x942223001da2eb8b:0xa4803e6474139b91!8m2!3d-26.8581414!4d-65.7504222!16s%2Fg%2F11vyg3s63b?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="hover:text-yellow-400 transition mx-3">
+        <a href="https://www.google.com/maps/place/Caba%C3%B1a+de+Lucas/@-26.8581366,-65.7529971,17z/data=!3m1!4b1!4m6!3m5!1s0x942223001da2eb8b:0xa4803e6474139b91!8m2!3d-26.8581414!4d-65.7504222!16s%2Fg%2F11vyg3s63b?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D"
+          target="_blank" class="hover:text-yellow-400 transition mx-3">
           <i class="fas fa-map-marker-alt"></i> Ver ubicación
         </a>
       </div>
@@ -336,14 +344,14 @@
   <script>
     // Year
     document.getElementById("year").textContent = new Date().getFullYear();
-    
+
     // Carousel
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
     const totalSlides = slides.length;
     const track = document.getElementById('carouselTrack');
     const indicatorsContainer = document.getElementById('indicators');
-    
+
     // Create indicators
     for (let i = 0; i < totalSlides; i++) {
       const indicator = document.createElement('div');
@@ -352,33 +360,33 @@
       indicator.onclick = () => goToSlide(i);
       indicatorsContainer.appendChild(indicator);
     }
-    
+
     function updateCarousel() {
       track.style.transform = `translateX(-${currentSlide * 100}%)`;
-      
+
       // Update indicators
       document.querySelectorAll('.indicator').forEach((ind, index) => {
         ind.classList.toggle('active', index === currentSlide);
       });
     }
-    
+
     function moveSlide(direction) {
       currentSlide += direction;
       if (currentSlide < 0) currentSlide = totalSlides - 1;
       if (currentSlide >= totalSlides) currentSlide = 0;
       updateCarousel();
     }
-    
+
     function goToSlide(index) {
       currentSlide = index;
       updateCarousel();
     }
-    
+
     // Auto-advance carousel every 5 seconds
     setInterval(() => {
       moveSlide(1);
     }, 5000);
-    
+
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') moveSlide(-1);
@@ -386,4 +394,5 @@
     });
   </script>
 </body>
+
 </html>
