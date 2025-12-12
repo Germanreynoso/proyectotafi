@@ -4,22 +4,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casa de Alquiler La Prohibida</title>
+  <title>La Prohibida | Tafí del Valle</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;600&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              400: '#D4AF37',
+              500: '#C5A028',
+              600: '#B08D20',
+            },
+            dark: {
+              900: '#050505',
+              800: '#0a0a0a',
+              700: '#151515',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Poppins"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
   <style>
+    :root {
+      --gold: #D4AF37;
+      --dark-bg: #050505;
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.05);
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
+      background-color: var(--dark-bg);
       color: #f5f5f5;
+      overflow-x: hidden;
     }
 
     h1,
     h2,
-    h3 {
-      font-family: 'Lora', serif;
+    h3,
+    h4 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #000;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold);
+    }
+
+    /* Glassmorphism */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    /* Text Gradients */
+    .text-gradient-gold {
+      background: linear-gradient(to right, #D4AF37, #F2D06B, #D4AF37);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shine 3s linear infinite;
+    }
+
+    @keyframes shine {
+      to {
+        background-position: 200% center;
+      }
     }
 
     /* Carousel Styles */
@@ -29,38 +107,56 @@
       max-width: 1200px;
       margin: 0 auto;
       overflow: hidden;
-      border-radius: 16px;
+      border-radius: 24px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(212, 175, 55, 0.2);
     }
 
     .carousel-track {
       display: flex;
-      transition: transform 0.5s ease-in-out;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .carousel-slide {
       min-width: 100%;
-      height: 600px;
+      height: 700px;
+      position: relative;
+    }
+
+    .carousel-slide::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     }
 
     .carousel-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 7s ease;
+    }
+
+    .carousel-slide.active img {
+      transform: scale(1.1);
     }
 
     .carousel-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(234, 179, 8, 0.9);
-      color: #000;
-      border: none;
-      width: 50px;
-      height: 50px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      color: var(--gold);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -69,80 +165,82 @@
     }
 
     .carousel-btn:hover {
-      background: #eab308;
+      background: var(--gold);
+      color: #000;
       transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
     }
 
     .carousel-btn.prev {
-      left: 20px;
+      left: 30px;
     }
 
     .carousel-btn.next {
-      right: 20px;
+      right: 30px;
     }
 
     .carousel-indicators {
       position: absolute;
-      bottom: 20px;
+      bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 10px;
+      gap: 12px;
       z-index: 10;
     }
 
     .indicator {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
+      width: 40px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.3);
       cursor: pointer;
       transition: all 0.3s;
     }
 
     .indicator.active {
-      background: #eab308;
-      width: 32px;
-      border-radius: 6px;
+      background: var(--gold);
+      width: 60px;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
     }
 
     /* WhatsApp Floating Button */
     .whatsapp-float {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 65px;
-      height: 65px;
+      bottom: 40px;
+      right: 40px;
+      width: 70px;
+      height: 70px;
       background: #25D366;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
       z-index: 1000;
       transition: all 0.3s;
-      animation: pulse 2s infinite;
+      animation: pulse-green 2s infinite;
     }
 
     .whatsapp-float:hover {
       transform: scale(1.1);
-      box-shadow: 0 12px 32px rgba(37, 211, 102, 0.6);
     }
 
     .whatsapp-float i {
-      font-size: 32px;
+      font-size: 38px;
       color: white;
     }
 
-    @keyframes pulse {
-
-      0%,
-      100% {
-        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    @keyframes pulse-green {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
       }
 
-      50% {
-        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.7), 0 0 0 15px rgba(37, 211, 102, 0);
+      70% {
+        box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
       }
     }
 
@@ -151,36 +249,12 @@
       scroll-behavior: smooth;
     }
 
-    /* Feature cards hover effect */
-    .feature-card {
-      transition: all 0.3s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-8px);
-    }
-
-    @media (max-width: 768px) {
-      .carousel-slide {
-        height: 400px;
-      }
-
-      .carousel-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-      }
-
-      .whatsapp-float {
-        width: 55px;
-        height: 55px;
-        bottom: 20px;
-        right: 20px;
-      }
-
-      .whatsapp-float i {
-        font-size: 28px;
-      }
+    /* Parallax Hero */
+    .hero-section {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
   </style>
 </head>
@@ -193,159 +267,284 @@
   </a>
 
   <!-- Header -->
-  <header class="bg-black/80 backdrop-blur-sm shadow-lg py-4 px-6 flex justify-between items-center sticky top-0 z-50">
-    <h1 class="text-2xl font-bold text-yellow-400">La Prohibida</h1>
-    <nav class="space-x-4 text-sm md:text-base">
-      <a href="#inicio" class="hover:text-yellow-400 transition">Inicio</a>
-      <a href="#caracteristicas" class="hover:text-yellow-400 transition">Características</a>
-      <a href="#galeria" class="hover:text-yellow-400 transition">Galería</a>
-      <a href="#ubicacion" class="hover:text-yellow-400 transition">Ubicación</a>
-      <a href="#contacto" class="hover:text-yellow-400 transition">Contacto</a>
-    </nav>
+  <header
+    class="fixed w-full top-0 z-50 transition-all duration-300 bg-dark-900/80 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl md:text-3xl font-bold text-gradient-gold tracking-wider">LA PROHIBIDA</h1>
+      <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-widest uppercase">
+        <a href="#inicio" class="text-gray-300 hover:text-gold-400 transition duration-300">Inicio</a>
+        <a href="#caracteristicas" class="text-gray-300 hover:text-gold-400 transition duration-300">Experiencia</a>
+        <a href="#galeria" class="text-gray-300 hover:text-gold-400 transition duration-300">Galería</a>
+        <a href="#ubicacion" class="text-gray-300 hover:text-gold-400 transition duration-300">Ubicación</a>
+        <a href="#contacto"
+          class="text-gold-400 border border-gold-400 px-6 py-2 rounded-full hover:bg-gold-400 hover:text-black transition duration-300">Reservar</a>
+      </nav>
+      <!-- Mobile Menu Button (Simple implementation) -->
+      <button class="md:hidden text-gold-400 text-2xl"><i class="fas fa-bars"></i></button>
+    </div>
   </header>
 
   <!-- Hero Section -->
-  <section id="inicio" class="relative h-[85vh] flex items-center justify-center bg-cover bg-center"
-    style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.46.jpeg');">
-    <div class="text-center px-4 max-w-4xl">
-      <h2 class="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">Descubrí tu próximo hogar temporal</h2>
-      <p class="text-xl md:text-2xl mb-8 text-gray-200">Comodidad, naturaleza y descanso en un solo lugar</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+  <section id="inicio" class="hero-section relative h-screen flex items-center justify-center"
+    style="background-image: url('Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.46.jpeg');">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-dark-800"></div>
+
+    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
+      <p class="text-gold-400 tracking-[0.3em] uppercase mb-4 text-sm md:text-base font-semibold">Tafí del Valle,
+        Tucumán</p>
+      <h2 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight text-white">
+        Descubrí tu <br />
+        <span class="text-gradient-gold italic">Refugio Exclusivo</span>
+      </h2>
+      <p class="text-lg md:text-2xl mb-12 text-gray-300 font-light max-w-2xl mx-auto">
+        Donde la naturaleza se encuentra con el confort absoluto. Una experiencia inolvidable te espera.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
         <a href="#contacto"
-          class="bg-yellow-400 text-black font-bold py-4 px-8 rounded-full shadow-lg hover:bg-yellow-300 hover:scale-105 transform transition">Reservá
-          ahora</a>
+          class="group relative px-8 py-4 bg-gold-500 text-black font-bold rounded-full overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] transition-all duration-300">
+          <span class="relative z-10 flex items-center gap-2">RESERVAR AHORA <i
+              class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
+          <div
+            class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          </div>
+        </a>
         <a href="https://wa.me/5493816789468" target="_blank"
-          class="bg-green-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 transform transition">
-          <i class="fab fa-whatsapp mr-2"></i>Consultar por WhatsApp
+          class="px-8 py-4 border border-white/30 text-white rounded-full hover:bg-white/10 backdrop-blur-sm transition-all duration-300 flex items-center gap-2">
+          <i class="fab fa-whatsapp"></i> Consultar
         </a>
       </div>
+    </div>
+
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50">
+      <i class="fas fa-chevron-down text-2xl"></i>
     </div>
   </section>
 
   <!-- Características -->
-  <section id="caracteristicas" class="py-20 px-6 max-w-7xl mx-auto">
-    <h2 class="text-4xl text-center font-bold mb-12 text-yellow-400">Características Destacadas</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-      <div class="feature-card bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl text-center shadow-lg">
-        <i class="fas fa-car text-yellow-400 text-4xl mb-3"></i>
-        <p class="font-semibold">Cochera</p>
+  <section id="caracteristicas" class="py-32 px-6 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-full bg-dark-900"></div>
+    <div class="absolute top-20 right-0 w-96 h-96 bg-gold-600/10 rounded-full blur-[100px]"></div>
+    <div class="absolute bottom-20 left-0 w-96 h-96 bg-blue-900/10 rounded-full blur-[100px]"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto">
+      <div class="text-center mb-20" data-aos="fade-up">
+        <span class="text-gold-400 tracking-widest uppercase text-sm font-semibold">Comodidades</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-6">Todo lo que necesitás</h2>
+        <div class="w-24 h-1 bg-gold-500 mx-auto rounded-full"></div>
       </div>
-      <div class="feature-card bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl text-center shadow-lg">
-        <i class="fas fa-fire text-yellow-400 text-4xl mb-3"></i>
-        <p class="font-semibold">Parrilla</p>
-      </div>
-      <div class="feature-card bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl text-center shadow-lg">
-        <i class="fas fa-bed text-yellow-400 text-4xl mb-3"></i>
-        <p class="font-semibold">3 Dormitorios</p>
-      </div>
-      <div class="feature-card bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-xl text-center shadow-lg">
-        <i class="fas fa-tree text-yellow-400 text-4xl mb-3"></i>
-        <p class="font-semibold">Entorno natural</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Feature 1 -->
+        <div class="glass-card p-8 rounded-2xl text-center group hover:-translate-y-2 transition-transform duration-300"
+          data-aos="fade-up" data-aos-delay="100">
+          <div
+            class="w-16 h-16 bg-gold-500/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold-500/20 transition-colors">
+            <i class="fas fa-car text-gold-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Cochera Privada</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Espacio seguro y techado para tu vehículo, para que solo te
+            preocupes por disfrutar.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass-card p-8 rounded-2xl text-center group hover:-translate-y-2 transition-transform duration-300"
+          data-aos="fade-up" data-aos-delay="200">
+          <div
+            class="w-16 h-16 bg-gold-500/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold-500/20 transition-colors">
+            <i class="fas fa-fire text-gold-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Parrilla & Asador</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">El lugar ideal para tus asados, equipado con todo lo
+            necesario para grandes momentos.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass-card p-8 rounded-2xl text-center group hover:-translate-y-2 transition-transform duration-300"
+          data-aos="fade-up" data-aos-delay="300">
+          <div
+            class="w-16 h-16 bg-gold-500/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold-500/20 transition-colors">
+            <i class="fas fa-bed text-gold-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">3 Dormitorios</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Amplios y luminosos, con ropa de cama premium para asegurar
+            tu descanso total.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="glass-card p-8 rounded-2xl text-center group hover:-translate-y-2 transition-transform duration-300"
+          data-aos="fade-up" data-aos-delay="400">
+          <div
+            class="w-16 h-16 bg-gold-500/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold-500/20 transition-colors">
+            <i class="fas fa-tree text-gold-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Entorno Natural</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Rodeado de montañas y aire puro, el escenario perfecto para
+            desconectar.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Galería con Carrusel -->
-  <section id="galeria" class="py-20 px-6 bg-black/30">
-    <h2 class="text-4xl text-center font-bold mb-12 text-yellow-400">Galería</h2>
-    <div class="carousel-container">
-      <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.46.jpeg"
-            alt="Vista de la casa"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07 (1).jpeg" alt="Foto 2">
+  <section id="galeria" class="py-20 px-4 bg-dark-800">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12 px-4" data-aos="fade-right">
+        <div>
+          <span class="text-gold-400 tracking-widest uppercase text-sm font-semibold">Nuestra Galería</span>
+          <h2 class="text-4xl md:text-5xl font-bold mt-2">Explorá cada rincón</h2>
         </div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07 (2).jpeg" alt="Foto 3">
-        </div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07 (3).jpeg" alt="Foto 4">
-        </div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07.jpeg" alt="Foto 5"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.09.jpeg" alt="Foto 6"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.28.06.jpeg" alt="Foto 7"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.28.27.jpeg" alt="Foto 8"></div>
-        <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.29.09.jpeg" alt="Foto 9"></div>
+        <p class="text-gray-400 mt-4 md:mt-0 max-w-md text-right hidden md:block">
+          Deslizá para descubrir la magia de La Prohibida. <br>
+          <span class="text-gold-400">9 fotos disponibles</span>
+        </p>
       </div>
 
-      <button class="carousel-btn prev" onclick="moveSlide(-1)">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button class="carousel-btn next" onclick="moveSlide(1)">
-        <i class="fas fa-chevron-right"></i>
-      </button>
+      <div class="carousel-container" data-aos="zoom-in" data-aos-duration="1200">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.46.jpeg"
+              alt="Vista de la casa"></div>
+          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07 (1).jpeg" alt="Foto 2">
+          </div>
+          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07 (2).jpeg" alt="Foto 3">
+          </div>
+          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07 (3).jpeg" alt="Foto 4">
+          </div>
+          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07.jpeg" alt="Foto 5">
+          </div>
+          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.09.jpeg" alt="Foto 6">
+          </div>
+          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.28.06.jpeg" alt="Foto 7">
+          </div>
+          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.28.27.jpeg" alt="Foto 8">
+          </div>
+          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.29.09.jpeg" alt="Foto 9">
+          </div>
+        </div>
 
-      <div class="carousel-indicators" id="indicators"></div>
+        <button class="carousel-btn prev" onclick="moveSlide(-1)">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-btn next" onclick="moveSlide(1)">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="carousel-indicators" id="indicators"></div>
+      </div>
     </div>
-    <p class="text-center text-gray-400 mt-6">9 fotos disponibles - Navegá con las flechas</p>
   </section>
 
   <!-- Ubicación -->
-  <section id="ubicacion" class="py-20 px-6 max-w-6xl mx-auto">
-    <h2 class="text-4xl text-center font-bold mb-8 text-yellow-400">Ubicación</h2>
-    <p class="text-center text-lg mb-8 text-gray-300">Ubicada en Tafí del Valle, Tucumán. Un lugar rodeado de
-      naturaleza, cerca de ríos, montañas y todos los servicios esenciales.</p>
-    <div class="flex justify-center mb-6">
-      <a href="https://www.google.com/maps/place/Caba%C3%B1a+de+Lucas/@-26.8581366,-65.7529971,17z/data=!3m1!4b1!4m6!3m5!1s0x942223001da2eb8b:0xa4803e6474139b91!8m2!3d-26.8581414!4d-65.7504222!16s%2Fg%2F11vyg3s63b?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D"
-        target="_blank"
-        class="bg-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-blue-700 hover:scale-105 transform transition inline-flex items-center gap-2">
-        <i class="fas fa-map-marker-alt"></i>
-        Ver en Google Maps - Cómo llegar
-      </a>
-    </div>
-    <div class="flex justify-center">
-      <iframe class="rounded-xl shadow-2xl border-4 border-gray-800" width="100%" height="400" style="max-width: 800px"
-        loading="lazy"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.8362847267847!2d-65.7529971!3d-26.8581366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942223001da2eb8b%3A0xa4803e6474139b91!2sCaba%C3%B1a%20de%20Lucas!5e0!3m2!1ses!2sar!4v1234567890">
-      </iframe>
+  <section id="ubicacion" class="py-32 px-6 bg-dark-900 relative">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div data-aos="fade-right">
+        <span class="text-gold-400 tracking-widest uppercase text-sm font-semibold">Ubicación Privilegiada</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-6">En el corazón de Tafí</h2>
+        <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+          Ubicada estratégicamente para ofrecerte privacidad sin alejarte de lo importante.
+          Disfrutá de la paz de las montañas con acceso rápido a todos los servicios.
+        </p>
+
+        <div class="space-y-4 mb-8">
+          <div class="flex items-center gap-4 text-gray-400">
+            <i class="fas fa-map-pin text-gold-400 w-6"></i>
+            <span>Tafí del Valle, Tucumán, Argentina</span>
+          </div>
+          <div class="flex items-center gap-4 text-gray-400">
+            <i class="fas fa-mountain text-gold-400 w-6"></i>
+            <span>Vistas panorámicas a los cerros</span>
+          </div>
+        </div>
+
+        <a href="https://www.google.com/maps/place/Caba%C3%B1a+de+Lucas/@-26.8581366,-65.7529971,17z/data=!3m1!4b1!4m6!3m5!1s0x942223001da2eb8b:0xa4803e6474139b91!8m2!3d-26.8581414!4d-65.7504222!16s%2Fg%2F11vyg3s63b?entry=ttu"
+          target="_blank"
+          class="inline-flex items-center gap-3 text-gold-400 font-semibold hover:text-white transition-colors group">
+          VER EN GOOGLE MAPS <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+
+      <div class="relative" data-aos="fade-left">
+        <div class="absolute -inset-4 bg-gold-500/20 rounded-2xl blur-lg"></div>
+        <iframe
+          class="relative w-full h-[400px] rounded-2xl shadow-2xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-500"
+          loading="lazy"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.8362847267847!2d-65.7529971!3d-26.8581366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942223001da2eb8b%3A0xa4803e6474139b91!2sCaba%C3%B1a%20de%20Lucas!5e0!3m2!1ses!2sar!4v1234567890">
+        </iframe>
+      </div>
     </div>
   </section>
 
   <!-- Contacto -->
-  <section id="contacto" class="py-20 px-6 bg-black/30">
-    <h2 class="text-4xl text-center font-bold mb-8 text-yellow-400">Consultas y Reservas</h2>
-    <p class="text-center text-gray-300 mb-10">¿Tenés dudas? Contactanos por el medio que prefieras</p>
+  <section id="contacto" class="py-32 px-6 relative overflow-hidden flex items-center justify-center">
+    <div
+      class="absolute inset-0 bg-[url('Fotos tafi/WhatsApp Image 2024-11-30 at 22.34.46.jpeg')] bg-cover bg-center opacity-20">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/80 to-transparent"></div>
 
-    <div class="max-w-4xl mx-auto flex flex-wrap justify-center gap-4">
-      <a href="https://wa.me/5493816789468" target="_blank"
-        class="bg-green-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 transform transition inline-flex items-center gap-2">
-        <i class="fab fa-whatsapp text-2xl"></i>
-        WhatsApp: 381 678-9468
-      </a>
-      <a href="tel:3816789468"
-        class="bg-blue-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-blue-700 hover:scale-105 transform transition inline-flex items-center gap-2">
-        <i class="fas fa-phone text-2xl"></i>
-        Llamar: 381 678-9468
-      </a>
+    <div class="relative z-10 max-w-4xl mx-auto text-center" data-aos="fade-up">
+      <h2 class="text-4xl md:text-6xl font-bold mb-8">¿Listo para tu escapada?</h2>
+      <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+        Reservá tu estadía hoy mismo y asegurá tus días de descanso en el paraíso.
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-6">
+        <a href="https://wa.me/5493816789468" target="_blank"
+          class="group bg-[#25D366] text-white font-bold py-5 px-10 rounded-full shadow-lg hover:bg-[#20bd5a] hover:scale-105 transform transition-all duration-300 flex items-center justify-center gap-3">
+          <i class="fab fa-whatsapp text-3xl"></i>
+          <div class="text-left">
+            <span class="block text-xs font-normal opacity-90">Escribinos al</span>
+            <span class="text-lg">WhatsApp</span>
+          </div>
+        </a>
+
+        <a href="tel:3816789468"
+          class="group bg-white text-black font-bold py-5 px-10 rounded-full shadow-lg hover:bg-gray-100 hover:scale-105 transform transition-all duration-300 flex items-center justify-center gap-3">
+          <i class="fas fa-phone text-2xl text-gold-600"></i>
+          <div class="text-left">
+            <span class="block text-xs font-normal opacity-70">Llamanos al</span>
+            <span class="text-lg">381 678-9468</span>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black py-8 text-center text-sm text-gray-400 border-t border-gray-800">
-    <div class="mb-4 space-y-2">
-      <div>
-        <a href="https://wa.me/5493816789468" target="_blank" class="hover:text-yellow-400 transition mx-3">
-          <i class="fab fa-whatsapp"></i> WhatsApp: 381 678-9468
-        </a>
+  <footer class="bg-black py-12 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+      <div class="text-center md:text-left">
+        <h3 class="text-2xl font-bold text-gold-400 mb-2">LA PROHIBIDA</h3>
+        <p class="text-gray-500 text-sm">Tafí del Valle, Tucumán</p>
       </div>
-      <div>
-        <a href="tel:3816789468" class="hover:text-yellow-400 transition mx-3">
-          <i class="fas fa-phone"></i> Tel: 381 678-9468
-        </a>
+
+      <div class="flex gap-8">
+        <a href="#" class="text-gray-400 hover:text-gold-400 transition"><i class="fab fa-instagram text-2xl"></i></a>
+        <a href="#" class="text-gray-400 hover:text-gold-400 transition"><i class="fab fa-facebook text-2xl"></i></a>
+        <a href="https://wa.me/5493816789468" class="text-gray-400 hover:text-gold-400 transition"><i
+            class="fab fa-whatsapp text-2xl"></i></a>
       </div>
-      <div>
-        <a href="https://www.google.com/maps/place/Caba%C3%B1a+de+Lucas/@-26.8581366,-65.7529971,17z/data=!3m1!4b1!4m6!3m5!1s0x942223001da2eb8b:0xa4803e6474139b91!8m2!3d-26.8581414!4d-65.7504222!16s%2Fg%2F11vyg3s63b?entry=ttu&g_ep=EgoyMDI1MDkyOS4wIKXMDSoASAFQAw%3D%3D"
-          target="_blank" class="hover:text-yellow-400 transition mx-3">
-          <i class="fas fa-map-marker-alt"></i> Ver ubicación
-        </a>
+
+      <div class="text-center md:text-right text-gray-600 text-sm">
+        <p>© <span id="year"></span> Todos los derechos reservados.</p>
       </div>
     </div>
-    <p class="mt-4">© <span id="year"></span> Casa de Alquiler La Prohibida - Tafí del Valle, Tucumán</p>
-    <p class="mt-2 text-xs">Todos los derechos reservados</p>
   </footer>
 
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+    // Initialize AOS
+    AOS.init({
+      once: true,
+      offset: 100,
+      duration: 800,
+      easing: 'ease-out-cubic',
+    });
+
     // Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Carousel
+    // Carousel Logic
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
     const totalSlides = slides.length;
@@ -368,6 +567,15 @@
       document.querySelectorAll('.indicator').forEach((ind, index) => {
         ind.classList.toggle('active', index === currentSlide);
       });
+
+      // Update active slide class for zoom effect
+      slides.forEach((slide, index) => {
+        if (index === currentSlide) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
     }
 
     function moveSlide(direction) {
@@ -382,16 +590,26 @@
       updateCarousel();
     }
 
-    // Auto-advance carousel every 5 seconds
-    setInterval(() => {
+    // Auto-advance carousel
+    let slideInterval = setInterval(() => {
       moveSlide(1);
     }, 5000);
+
+    // Pause on hover
+    const carouselContainer = document.querySelector('.carousel-container');
+    carouselContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+    carouselContainer.addEventListener('mouseleave', () => {
+      slideInterval = setInterval(() => moveSlide(1), 5000);
+    });
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') moveSlide(-1);
       if (e.key === 'ArrowRight') moveSlide(1);
     });
+
+    // Initialize first slide active state
+    slides[0].classList.add('active');
   </script>
 </body>
 
