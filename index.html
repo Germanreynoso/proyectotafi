@@ -326,9 +326,9 @@
 
   <!-- Calendar Modal -->
   <div id="calendarModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
-    <div class="bg-dark-800 p-8 rounded-2xl max-w-md w-full mx-4 glass-card">
+    <div class="bg-dark-800 p-8 rounded-2xl max-w-lg w-full mx-4 glass-card">
       <div class="flex justify-between items-center mb-6">
-        <h3 class="text-2xl font-bold text-gold-400">Fechas Disponibles - Enero 2025</h3>
+        <h3 class="text-2xl font-bold text-gold-400">Fechas Disponibles - Enero 2026</h3>
         <button id="closeModal" class="text-gray-400 hover:text-white text-2xl">&times;</button>
       </div>
       <div id="calendar" class="text-center">
@@ -352,7 +352,7 @@
         <a href="#caracteristicas" class="text-gray-300 hover:text-gold-400 transition duration-300">Experiencia</a>
         <a href="#galeria" class="text-gray-300 hover:text-gold-400 transition duration-300">Galería</a>
         <a href="#ubicacion" class="text-gray-300 hover:text-gold-400 transition duration-300">Ubicación</a>
-        <a onclick="openModal()" href="#"
+        <a href="#contacto"
           class="text-gold-400 border border-gold-400 px-6 py-2 rounded-full hover:bg-gold-400 hover:text-black transition duration-300">Reservar</a>
       </nav>
       <!-- Mobile Menu Button (Simple implementation) -->
@@ -376,7 +376,7 @@
         Donde la naturaleza se encuentra con el confort absoluto. Una experiencia inolvidable te espera.
       </p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-        <a onclick="openModal()" href="#"
+        <a href="#contacto"
           class="group relative px-8 py-4 bg-gold-500 text-black font-bold rounded-full overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] transition-all duration-300">
           <span class="relative z-10 flex items-center gap-2">RESERVAR AHORA <i
               class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
@@ -384,6 +384,10 @@
             class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
           </div>
         </a>
+        <button onclick="openModal()"
+          class="px-8 py-4 border border-white/30 text-white rounded-full hover:bg-white/10 backdrop-blur-sm transition-all duration-300 flex items-center gap-2">
+          <i class="fas fa-calendar"></i> Fechas Disponibles
+        </button>
         <a href="https://wa.me/5493816789468" target="_blank"
           class="px-8 py-4 border border-white/30 text-white rounded-full hover:bg-white/10 backdrop-blur-sm transition-all duration-300 flex items-center gap-2">
           <i class="fab fa-whatsapp"></i> Consultar
@@ -713,13 +717,13 @@
     // Generate Calendar
     function generateCalendar() {
       const calendarEl = document.getElementById('calendar');
-      const year = 2025;
+      const year = 2026;
       const month = 0; // January
       const firstDay = new Date(year, month, 1).getDay();
       const daysInMonth = new Date(year, month + 1, 0).getDate();
       const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 
-      let html = '<div class="calendar-header">Enero 2025</div>';
+      let html = '<div class="calendar-header">Enero 2026</div>';
       html += '<div class="calendar-grid">';
 
       // Days of week
@@ -774,7 +778,7 @@
         return;
       }
       const datesStr = selectedDates.sort((a,b)=>a-b).join(', ');
-      const message = `Hola, me gustaría reservar para los días: ${datesStr} de enero de 2025.`;
+      const message = `Hola, me gustaría reservar para los días: ${datesStr} de enero de 2026.`;
       const url = `https://wa.me/5493816789468?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
       closeModal();
