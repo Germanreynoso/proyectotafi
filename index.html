@@ -281,10 +281,30 @@
       cursor: not-allowed;
     }
 
+    .calendar-day.selected {
+      background-color: #D4AF37;
+      color: black;
+      font-weight: bold;
+    }
+
     .calendar-header {
       font-weight: bold;
       color: #f5f5f5;
       margin-bottom: 10px;
+    }
+
+    /* Mobile responsiveness for calendar */
+    @media (max-width: 640px) {
+      .calendar-grid {
+        gap: 4px;
+      }
+      .calendar-day {
+        padding: 8px 4px;
+        font-size: 14px;
+      }
+      .calendar-header {
+        font-size: 16px;
+      }
     }
 
     /* Parallax Hero */
@@ -314,6 +334,11 @@
       <div id="calendar" class="text-center">
         <!-- Calendar will be generated here -->
       </div>
+      <div id="selectedDates" class="mt-4 text-left">
+        <p class="text-gray-300">Fechas seleccionadas:</p>
+        <ul id="selectedList" class="text-gold-400"></ul>
+      </div>
+      <button onclick="sendReservation()" class="mt-4 px-6 py-2 bg-gold-500 text-black rounded-full hover:bg-gold-600 transition">Reservar Seleccionados</button>
     </div>
   </div>
 
@@ -668,6 +693,8 @@
     slides[0].classList.add('active');
 
     // Calendar Modal Functions
+    let selectedDates = [];
+
     function openModal() {
       document.getElementById('calendarModal').classList.remove('hidden');
       generateCalendar();
@@ -675,6 +702,7 @@
 
     function closeModal() {
       document.getElementById('calendarModal').classList.add('hidden');
+      selectedDates = []; // reset on close
     }
 
     document.getElementById('closeModal').addEventListener('click', closeModal);
@@ -706,17 +734,47 @@
 
       // Days
       for (let day = 1; day <= daysInMonth; day++) {
-        const isAvailable = day >= 9 && day <= 30;
+        const isAvailable = day >= 9 && day <= 30 && !(day >= 19 && day <= 23);
         const className = isAvailable ? 'available' : 'unavailable';
-        html += `<div class="calendar-day ${className}" ${isAvailable ? 'onclick="selectDate(' + day + ')"' : ''}>${day}</div>`;
+        html += `<div class="calendar-day ${className}" ${isAvailable ? 'onclick="toggleDate(' + day + ')"' : ''}>${day}</div>`;
       }
 
       html += '</div>';
       calendarEl.innerHTML = html;
+      updateCalendarDisplay();
     }
 
-    function selectDate(day) {
-      const message = `Hola, me gustaría reservar para el ${day} de enero de 2025.`;
+    function toggleDate(day) {
+      const index = selectedDates.indexOf(day);
+      if (index > -1) {
+        selectedDates.splice(index, 1);
+      } else {
+        selectedDates.push(day);
+      }
+      updateCalendarDisplay();
+    }
+
+    function updateCalendarDisplay() {
+      const days = document.querySelectorAll('.calendar-day.available');
+      days.forEach(div => {
+        const day = parseInt(div.textContent);
+        if (selectedDates.includes(day)) {
+          div.classList.add('selected');
+        } else {
+          div.classList.remove('selected');
+        }
+      });
+      const list = document.getElementById('selectedList');
+      list.innerHTML = selectedDates.sort((a,b)=>a-b).map(d => `<li>${d} de enero</li>`).join('');
+    }
+
+    function sendReservation() {
+      if (selectedDates.length === 0) {
+        alert('Por favor selecciona al menos una fecha.');
+        return;
+      }
+      const datesStr = selectedDates.sort((a,b)=>a-b).join(', ');
+      const message = `Hola, me gustaría reservar para los días: ${datesStr} de enero de 2025.`;
       const url = `https://wa.me/5493816789468?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
       closeModal();
