@@ -249,6 +249,44 @@
       scroll-behavior: smooth;
     }
 
+    /* Calendar Styles */
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .calendar-day {
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .calendar-day.available {
+      background-color: rgba(212, 175, 55, 0.2);
+      color: #D4AF37;
+      cursor: pointer;
+    }
+
+    .calendar-day.available:hover {
+      background-color: rgba(212, 175, 55, 0.4);
+      transform: scale(1.05);
+    }
+
+    .calendar-day.unavailable {
+      color: #666;
+      cursor: not-allowed;
+    }
+
+    .calendar-header {
+      font-weight: bold;
+      color: #f5f5f5;
+      margin-bottom: 10px;
+    }
+
     /* Parallax Hero */
     .hero-section {
       background-attachment: fixed;
@@ -266,6 +304,19 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
+  <!-- Calendar Modal -->
+  <div id="calendarModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+    <div class="bg-dark-800 p-8 rounded-2xl max-w-md w-full mx-4 glass-card">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-2xl font-bold text-gold-400">Fechas Disponibles - Enero 2025</h3>
+        <button id="closeModal" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+      </div>
+      <div id="calendar" class="text-center">
+        <!-- Calendar will be generated here -->
+      </div>
+    </div>
+  </div>
+
   <!-- Header -->
   <header
     class="fixed w-full top-0 z-50 transition-all duration-300 bg-dark-900/80 backdrop-blur-md border-b border-white/5">
@@ -276,7 +327,7 @@
         <a href="#caracteristicas" class="text-gray-300 hover:text-gold-400 transition duration-300">Experiencia</a>
         <a href="#galeria" class="text-gray-300 hover:text-gold-400 transition duration-300">Galería</a>
         <a href="#ubicacion" class="text-gray-300 hover:text-gold-400 transition duration-300">Ubicación</a>
-        <a href="#contacto"
+        <a onclick="openModal()" href="#"
           class="text-gold-400 border border-gold-400 px-6 py-2 rounded-full hover:bg-gold-400 hover:text-black transition duration-300">Reservar</a>
       </nav>
       <!-- Mobile Menu Button (Simple implementation) -->
@@ -300,7 +351,7 @@
         Donde la naturaleza se encuentra con el confort absoluto. Una experiencia inolvidable te espera.
       </p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-        <a href="#contacto"
+        <a onclick="openModal()" href="#"
           class="group relative px-8 py-4 bg-gold-500 text-black font-bold rounded-full overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] transition-all duration-300">
           <span class="relative z-10 flex items-center gap-2">RESERVAR AHORA <i
               class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i></span>
@@ -615,6 +666,61 @@
 
     // Initialize first slide active state
     slides[0].classList.add('active');
+
+    // Calendar Modal Functions
+    function openModal() {
+      document.getElementById('calendarModal').classList.remove('hidden');
+      generateCalendar();
+    }
+
+    function closeModal() {
+      document.getElementById('calendarModal').classList.add('hidden');
+    }
+
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('calendarModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Generate Calendar
+    function generateCalendar() {
+      const calendarEl = document.getElementById('calendar');
+      const year = 2025;
+      const month = 0; // January
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+
+      let html = '<div class="calendar-header">Enero 2025</div>';
+      html += '<div class="calendar-grid">';
+
+      // Days of week
+      daysOfWeek.forEach(day => {
+        html += `<div class="calendar-day calendar-header">${day}</div>`;
+      });
+
+      // Empty cells for days before first day
+      for (let i = 0; i < firstDay; i++) {
+        html += '<div></div>';
+      }
+
+      // Days
+      for (let day = 1; day <= daysInMonth; day++) {
+        const isAvailable = day >= 9 && day <= 30;
+        const className = isAvailable ? 'available' : 'unavailable';
+        html += `<div class="calendar-day ${className}" ${isAvailable ? 'onclick="selectDate(' + day + ')"' : ''}>${day}</div>`;
+      }
+
+      html += '</div>';
+      calendarEl.innerHTML = html;
+    }
+
+    function selectDate(day) {
+      const message = `Hola, me gustaría reservar para el ${day} de enero de 2025.`;
+      const url = `https://wa.me/5493816789468?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+      closeModal();
+    }
   </script>
 </body>
 
