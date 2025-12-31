@@ -326,7 +326,7 @@
 
   <!-- Calendar Modal -->
   <div id="calendarModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
-    <div class="bg-dark-800 p-8 rounded-2xl max-w-lg w-full mx-4 glass-card">
+    <div class="bg-dark-800 p-4 md:p-8 rounded-2xl max-w-md md:max-w-lg w-full mx-4 glass-card">
       <div class="flex justify-between items-center mb-6">
         <h3 class="text-2xl font-bold text-gold-400">Fechas Disponibles - Enero 2026</h3>
         <button id="closeModal" class="text-gray-400 hover:text-white text-2xl">&times;</button>
@@ -738,7 +738,7 @@
 
       // Days
       for (let day = 1; day <= daysInMonth; day++) {
-        const isAvailable = day >= 9 && day <= 30 && !(day >= 19 && day <= 23);
+        const isAvailable = (day >= 11 && day <= 15) || (day >= 24 && day <= 30);
         const className = isAvailable ? 'available' : 'unavailable';
         html += `<div class="calendar-day ${className}" ${isAvailable ? 'onclick="toggleDate(' + day + ')"' : ''}>${day}</div>`;
       }
