@@ -298,10 +298,12 @@
       .calendar-grid {
         gap: 4px;
       }
+
       .calendar-day {
         padding: 8px 4px;
         font-size: 14px;
       }
+
       .calendar-header {
         font-size: 16px;
       }
@@ -338,7 +340,9 @@
         <p class="text-gray-300">Fechas seleccionadas:</p>
         <ul id="selectedList" class="text-gold-400"></ul>
       </div>
-      <button onclick="sendReservation()" class="mt-4 px-6 py-2 bg-gold-500 text-black rounded-full hover:bg-gold-600 transition">Reservar Seleccionados</button>
+      <button onclick="sendReservation()"
+        class="mt-4 px-6 py-2 bg-gold-500 text-black rounded-full hover:bg-gold-600 transition">Reservar
+        Seleccionados</button>
     </div>
   </div>
 
@@ -475,7 +479,7 @@
         </div>
         <p class="text-gray-400 mt-4 md:mt-0 max-w-md text-right hidden md:block">
           Deslizá para descubrir la magia de La Prohibida. <br>
-          <span class="text-gold-400">9 fotos disponibles</span>
+          <span class="text-gold-400">11 fotos disponibles</span>
         </p>
       </div>
 
@@ -489,7 +493,7 @@
           </div>
           <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07 (3).jpeg" alt="Foto 4">
           </div>
-          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.07.jpeg" alt="Foto 5">
+          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2026-01-08 at 18.33.41.jpeg" alt="Foto 5">
           </div>
           <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.27.09.jpeg" alt="Foto 6">
           </div>
@@ -499,11 +503,9 @@
           </div>
           <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.29.09.jpeg" alt="Foto 9">
           </div>
-          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-08 at 11.29.09.jpeg" alt="Foto 9">
-          </div>
           <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-16 at 15.06.14.jpeg" alt="Foto 10">
           </div>
-          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-16 at 15.06.16.jpeg" alt="Foto 10">
+          <div class="carousel-slide"><img src="Fotos tafi/WhatsApp Image 2025-12-16 at 15.06.16.jpeg" alt="Foto 11">
           </div>
         </div>
 
@@ -710,7 +712,7 @@
     }
 
     document.getElementById('closeModal').addEventListener('click', closeModal);
-    document.getElementById('calendarModal').addEventListener('click', function(e) {
+    document.getElementById('calendarModal').addEventListener('click', function (e) {
       if (e.target === this) closeModal();
     });
 
@@ -769,7 +771,7 @@
         }
       });
       const list = document.getElementById('selectedList');
-      list.innerHTML = selectedDates.sort((a,b)=>a-b).map(d => `<li>${d} de enero</li>`).join('');
+      list.innerHTML = selectedDates.sort((a, b) => a - b).map(d => `<li>${d} de enero</li>`).join('');
     }
 
     function sendReservation() {
@@ -777,7 +779,7 @@
         alert('Por favor selecciona al menos una fecha.');
         return;
       }
-      const datesStr = selectedDates.sort((a,b)=>a-b).join(', ');
+      const datesStr = selectedDates.sort((a, b) => a - b).join(', ');
       const message = `Hola, me gustaría reservar para los días: ${datesStr} de enero de 2026.`;
       const url = `https://wa.me/5493816789468?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
